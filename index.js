@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 const port = 3000;
 
+// connecting it with routes
 app.use('/', require('./routes'));
 
 
