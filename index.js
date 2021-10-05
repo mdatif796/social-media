@@ -9,6 +9,8 @@ app.use('/', require('./routes'));
 // Set up the view engine
 app.set('view engine', 'ejs');
 app.set('views', './views');
+// set up the partials
+app.use(express.static('public'));
 
 
 
