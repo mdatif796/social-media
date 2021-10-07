@@ -1,10 +1,17 @@
 const express = require('express');
+const cookieParser = require('cookie-parser');
 const ejs = require('ejs');
 const expressLayouts = require('express-ejs-layouts');
 
 const app = express();
 const port = 3000;
 
+const db = require('./config/mongoose');
+
+// Use body parser
+app.use(express.urlencoded({extended:true}));
+// Use cookie parser
+app.use(cookieParser());
 // set up the static files like css,images
 app.use(express.static("public"));
 
