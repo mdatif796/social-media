@@ -1,11 +1,11 @@
 const passport = require('passport');
 
-const LocalStrategy = require('passport-local');
+const LocalStrategy = require('passport-local').Strategy;
 const User = require('../models/user');
 
 // passport use LocalStrategy for authentication
 passport.use(new LocalStrategy({   // LocalStrategy takes two param ,
-    userNameField: 'email'         // one is username
+    usernameField: 'email'         // one is username
 },function(email,password,done){   // and the second one is function
 
     // find user using email property
@@ -15,6 +15,7 @@ passport.use(new LocalStrategy({   // LocalStrategy takes two param ,
             return done(err);
         }
         if(!user || user.password != password){
+            console.log('Invalid Username/Password');
             return done(null,false);
         }
         return done(null,user);
@@ -37,3 +38,5 @@ passport.deserializeUser((id,done)=>{
         return done(null,user);
     });
 });
+
+module.exports = passport;

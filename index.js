@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const ejs = require('ejs');
@@ -8,25 +9,45 @@ const port = 3000;
 
 const db = require('./config/mongoose');
 
+// require for session cookie
+const session = require('express-session');
+const passport = require('passport');
+const passportLocal = require('./config/passport-local-strategy');
+
 // Use body parser
 app.use(express.urlencoded({extended:true}));
+
 // Use cookie parser
 app.use(cookieParser());
+
 // set up the static files like css,images
 app.use(express.static("public"));
 
 app.use(expressLayouts);
+
 // extract style and scripts from sub pages into the layout
 app.set('layout extractStyles', true);
 app.set('layout extractScripts', true);
 
-// Use express router
-app.use('/', require('./routes'));
+
 // Set up the view engine
 app.set('view engine', 'ejs');
 app.set('views', './views');
 
+app.use(session({
+    name: 'social',
+    secret: process.env.SECRET,
+    saveUninitialized: false,
+    resave: false,
+    cookie: {
+        maxAge: (1000 * 60 * 100)
+    }
+}));
+app.use(passport.initialize());
+app.use(passport.session());
 
+// Use express router
+app.use('/', require('./routes'));
 
 app.listen(port, (err) => {
     if (err) {
