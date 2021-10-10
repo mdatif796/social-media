@@ -13,6 +13,7 @@ const db = require('./config/mongoose');
 const session = require('express-session');
 const passport = require('passport');
 const passportLocal = require('./config/passport-local-strategy');
+const MongoStore = require('connect-mongo');
 
 // Use body parser
 app.use(express.urlencoded({extended:true}));
@@ -34,6 +35,7 @@ app.set('layout extractScripts', true);
 app.set('view engine', 'ejs');
 app.set('views', './views');
 
+// Use mongo-connect to save the session cookie to mongoDb
 app.use(session({
     name: 'social',
     secret: process.env.SECRET,
@@ -41,7 +43,15 @@ app.use(session({
     resave: false,
     cookie: {
         maxAge: (1000 * 60 * 100)
+    },
+    store: MongoStore.create({
+        mongoUrl: `mongodb+srv://Admin-Atif:${process.env.PASSWORD}@cluster0.lymyd.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`,
+        autoRomove: 'disabled'
+    },
+    function(err){
+        console.log(err || 'connect-mongoDb setup ok');
     }
+    )
 }));
 app.use(passport.initialize());
 app.use(passport.session());
