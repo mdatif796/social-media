@@ -14,6 +14,15 @@ const session = require('express-session');
 const passport = require('passport');
 const passportLocal = require('./config/passport-local-strategy');
 const MongoStore = require('connect-mongo');
+const sassMiddleware = require('node-sass-middleware');
+
+app.use(sassMiddleware({
+    src: '/public/scss',
+    dest: '/public/css',
+    debug: true,
+    outputStyle: 'compressed',
+    prefix: '/css'
+}));
 
 // Use body parser
 app.use(express.urlencoded({extended:true}));
