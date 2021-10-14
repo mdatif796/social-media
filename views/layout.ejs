@@ -1,16 +1,14 @@
 <html>
-    <head>
-        <title><%= title %> </title>
-        <link rel="stylesheet" href="/css/layout.css">
-        <%- style %> 
-    </head>
-    <body>
-        <%- include('./partials/header') %> 
-
-        <%- body %> 
-
-        <%- include('./partials/footer') %> 
-
-        <%- script %> 
-    </body>
+  <head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/layout.css" />
+    <link rel="stylesheet" href="/css/header.css" />
+    <link rel="stylesheet" href="/css/footer.css" />
+    <%- style %>
+  </head>
+  <body>
+    <%- include('./partials/header') %>
+    <main id="layout-main"><%- body %></main>
+    <%- include('./partials/footer') %> <%- script %>
+  </body>
 </html>

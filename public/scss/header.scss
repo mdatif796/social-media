@@ -1,0 +1,25 @@
+header {
+  #header-nav {
+    height: 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(75, 75, 182);
+  }
+  h1{
+    padding: 0 10px;
+    color: white;
+  }
+  .header-list{
+    display: flex;
+    list-style: none;
+    li{
+      padding-right: 10px;
+      a{
+        text-decoration: none;
+        color: white;
+        font-size: 20px;
+      }
+    }
+  }
+}

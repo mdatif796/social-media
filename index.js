@@ -17,8 +17,8 @@ const MongoStore = require('connect-mongo');
 const sassMiddleware = require('node-sass-middleware');
 
 app.use(sassMiddleware({
-    src: '/public/scss',
-    dest: '/public/css',
+    src: './public/scss',
+    dest: './public/css',
     debug: true,
     outputStyle: 'compressed',
     prefix: '/css'
