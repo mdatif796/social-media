@@ -7,6 +7,8 @@
         <textarea name="content" cols="30" rows="3" placeholder="Type here..."></textarea>
         <input type="submit" value="Post">
     </form>
-    <h3><%=post.content%></h3>
+    <% for(post of posts){ %>
+           <h3><%= post.content %> </h3>
+        <% } %>  
 </section>
 <% } %> 

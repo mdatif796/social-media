@@ -4,9 +4,7 @@ const mongoose = require("mongoose");
 const password = process.env.PASSWORD; // fetching PASSWORD from .env file
 // connecting to mongoDB
 mongoose.connect(
-  "mongodb+srv://Admin-Atif:" +
-    password +
-    "@cluster0.lymyd.mongodb.net/socialSite?retryWrites=true&w=majority"
+  `mongodb+srv://Admin-Atif:${password}@cluster0.lymyd.mongodb.net/socialSite?retryWrites=true&w=majority`
 );
 
 const db = mongoose.connection;
